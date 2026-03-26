@@ -1,0 +1,36 @@
+# data_manifest.txt
+# Q1 — Audio files used for feature extraction and boundary detection
+# Dataset: LibriSpeech train-clean-100
+# Source:  https://www.openslr.org/12  (or HuggingFace openslr/librispeech_asr)
+# Format:  16 kHz, 16-bit, mono FLAC
+# License: CC BY 4.0
+#
+# Files are loaded dynamically at runtime via librispeech_loader.py.
+# The scripts below use the first N utterances (shuffled, seed=42).
+#
+# ─────────────────────────────────────────────────────────────────
+# Script              | Utterances used | Purpose
+# ─────────────────────────────────────────────────────────────────
+# mfcc_manual.py      |        5        | MFCC extraction & plots
+# leakage_snr.py      |       20        | Window comparison (avg)
+# voiced_unvoiced.py  |        3        | Boundary detection plots
+# phonetic_mapping.py |        5        | Wav2Vec2 RMSE evaluation
+# ─────────────────────────────────────────────────────────────────
+#
+# Example file paths (actual files depend on your local extract):
+#   train-clean-100/19/198/19-198-0000.flac   speaker 19,  chapter 198
+#   train-clean-100/19/198/19-198-0001.flac
+#   train-clean-100/26/495/26-495-0000.flac   speaker 26,  chapter 495
+#   train-clean-100/39/121/39-121-0000.flac   speaker 39,  chapter 121
+#   train-clean-100/40/222/40-222-0000.flac   speaker 40,  chapter 222
+#
+# To reproduce the exact utterances, run with seed=42 (default in loader):
+#   python mfcc_manual.py /path/to/train-clean-100
+#
+# Dataset statistics (full train-clean-100):
+#   Total utterances : ~28,539
+#   Total duration   : ~100 hours
+#   Unique speakers  : 251  (125 female, 126 male)
+#   Sample rate      : 16,000 Hz
+#   Transcript file  : <speaker>-<chapter>.trans.txt
+#   Gender metadata  : SPEAKERS.TXT (in dataset root)
